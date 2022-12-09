@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend
+    depends_on:
+      - database
+    entrypoint: sh -c 'yarn install --frozen-lockfile && yarn start:dev'
+    env_file:
+      - .env
+    ports:
+      - ${PORT}:${PORT}
+    networks:
+      - clean-arch-net
+    volumes:
+      - .:/app/
+      - /app/node_modules/
+
+  database:
+    image: mongo:latest
+    container_name: database
+    ports:
+      - ${MONGODB_PORT}:${MONGODB_PORT}
+    networks:
+      - clean-arch-net
+    volumes:
+      - database-volume/data/db
+
+networks:
+  clean-arch-net:
+
+volumes:
+  database-volume:
