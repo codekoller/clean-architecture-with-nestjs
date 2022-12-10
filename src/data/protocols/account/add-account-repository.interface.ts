@@ -4,4 +4,5 @@ import { AddAccountDto } from '@app/presentation/dtos/account/add-account.dto';
 export interface AccountRepositoryInterface {
   add(data: AddAccountDto): Promise<AccountModel>;
   findByEmail(email: string): Promise<AccountModel>;
+  find(): Promise<AccountModel[]>;
 }

@@ -9,4 +9,5 @@ export interface ExceptionInterface {
   forbiddenException(data?: FormatExceptionMessageInterface): void;
   unauthorizedException(data?: FormatExceptionMessageInterface): void;
   conflictException(data?: FormatExceptionMessageInterface): void;
+  notFoundException(data?: FormatExceptionMessageInterface): void;
 }

@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { EnvironmentConfigModule } from './infra/config/environment-config/environment-config.module';
+import { CryptographyModule } from './infra/cryptography/cryptography.module';
 import { ExceptionsModule } from './infra/exceptions/exceptions.module';
 import { AccountModule } from './infra/ioc/account.module';
 import { LoggerModule } from './infra/logger/logger.module';
@@ -15,6 +16,7 @@ import { LoggerModule } from './infra/logger/logger.module';
     LoggerModule,
     ExceptionsModule,
     AccountModule,
+    CryptographyModule,
   ],
   controllers: [],
   providers: [],

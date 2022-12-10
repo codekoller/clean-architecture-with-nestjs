@@ -4,8 +4,8 @@ import { ResponseAccountType } from '@app/presentation/types/account/response-ac
 export abstract class AccountMapper {
   static toAccount(account: AccountModel): ResponseAccountType {
     return {
-      id: account.id,
-      fullName: account.name + account.surname,
+      id: account._id,
+      fullName: `${account.name} ${account.surname}`,
       age: account.age,
       email: account.email,
       password: account.password,
