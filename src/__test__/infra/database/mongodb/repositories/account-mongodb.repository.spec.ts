@@ -1,5 +1,5 @@
-import { AccountModel } from '@app/infra/config/database/mongodb/models/account/account.model';
-import { AccountMongodbRepository } from '@app/infra/config/database/mongodb/repositories/account/account-mongodb.repository';
+import { AccountModel } from '@app/infra/database/mongodb/models/account/account.model';
+import { AccountMongodbRepository } from '@app/infra/database/mongodb/repositories/account/account-mongodb.repository';
 import { getModelToken } from '@nestjs/mongoose';
 import { Test } from '@nestjs/testing';
 import { Model } from 'mongoose';

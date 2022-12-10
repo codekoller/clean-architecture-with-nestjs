@@ -12,7 +12,7 @@ async function bootstrap() {
   const logger = new Logger('Main');
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  // Filter
+  // filter
   app.useGlobalFilters(new AllExceptionFilter(new LoggerService()));
 
   // pipes

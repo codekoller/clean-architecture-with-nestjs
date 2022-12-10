@@ -1,7 +1,7 @@
 import {
   AccountModel,
   AccountSchema,
-} from '@app/infra/config/database/mongodb/models/account/account.model';
+} from '@app/infra/database/mongodb/models/account/account.model';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MongodbModule } from './mongodb/mongodb.module';

@@ -1,4 +1,4 @@
-import { AccountRepositoryInterface } from '@app/data/protocols/account/add-account-repository.interface';
+import { AccountRepositoryInterface } from '@app/data/protocols/account/account-repository.interface';
 import { ExceptionInterface } from '@app/domain/exceptions/exception.interface';
 import { ILogger } from '@app/domain/logger/logger.interface';
 import { AccountMapper } from '@app/presentation/mappers/account/account.mapper';
