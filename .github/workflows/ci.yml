@@ -1,0 +1,9 @@
+name: Clean Architecture With NestJS CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  continuous-integration:
+    uses: codekoller/workflow-templates/.github/workflows/codekoller-ci.yml@main
