@@ -13,7 +13,7 @@ export class AccountModel {
     type: String,
     default: () => randomUUID(),
   })
-  id!: string;
+  _id!: string;
 
   @Prop({
     type: String,

@@ -19,4 +19,8 @@ export class AccountMongodbRepository implements AccountRepositoryInterface {
       email: { $eq: email },
     });
   }
+
+  public async find(): Promise<AccountModel[]> {
+    return await this.mongoHelper.find();
+  }
 }
