@@ -1,4 +1,4 @@
-import { AccountModel } from '@app/infra/config/database/mongodb/models/account/account.model';
+import { AccountModel } from '@app/infra/database/mongodb/models/account/account.model';
 import { ResponseAccountType } from '@app/presentation/types/account/response-account.type';
 
 export abstract class AccountMapper {

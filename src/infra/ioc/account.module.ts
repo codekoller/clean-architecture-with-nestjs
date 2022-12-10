@@ -1,4 +1,4 @@
-import { AccountRepositoryInterface } from '@app/data/protocols/account/add-account-repository.interface';
+import { AccountRepositoryInterface } from '@app/data/protocols/account/account-repository.interface';
 import { BcryptAdapterInterface } from '@app/domain/adapters/bcrypt-adapter.interface';
 import { ExceptionInterface } from '@app/domain/exceptions/exception.interface';
 import { ILogger } from '@app/domain/logger/logger.interface';
@@ -7,8 +7,8 @@ import { AddAccountUseCase } from '@app/usecases/account/add-account.usecase';
 import { FindAccountByIdUseCase } from '@app/usecases/account/find-account-by-id.usecase';
 import { FindAccountsUseCase } from '@app/usecases/account/find-accounts.usecase';
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from '../config/database/database.module';
-import { AccountMongodbRepository } from '../config/database/mongodb/repositories/account/account-mongodb.repository';
+import { DatabaseModule } from '../database/database.module';
+import { AccountMongodbRepository } from '../database/mongodb/repositories/account/account-mongodb.repository';
 import { EnvironmentConfigModule } from '../config/environment-config/environment-config.module';
 import { BcryptAdapter } from '../cryptography/bcrypt/bcrypt-adapter';
 import { CryptographyModule } from '../cryptography/cryptography.module';

@@ -1,5 +1,6 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { LogsMiddleware } from './infra/common/middleware/logs.middleware';
 import { EnvironmentConfigModule } from './infra/config/environment-config/environment-config.module';
 import { CryptographyModule } from './infra/cryptography/cryptography.module';
 import { ExceptionsModule } from './infra/exceptions/exceptions.module';
@@ -21,4 +22,8 @@ import { LoggerModule } from './infra/logger/logger.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LogsMiddleware).forRoutes('*');
+  }
+}
