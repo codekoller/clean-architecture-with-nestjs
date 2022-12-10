@@ -4,6 +4,7 @@ import {
 } from '@app/domain/exceptions/exception.interface';
 import {
   BadRequestException,
+  ConflictException,
   ForbiddenException,
   Injectable,
   InternalServerErrorException,
@@ -23,5 +24,9 @@ export class ExceptionsService implements ExceptionInterface {
   }
   unauthorizedException(data?: FormatExceptionMessageInterface): void {
     throw new UnauthorizedException(data);
+  }
+
+  conflictException(data?: FormatExceptionMessageInterface): void {
+    throw new ConflictException(data);
   }
 }
