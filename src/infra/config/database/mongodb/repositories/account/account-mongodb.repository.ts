@@ -10,8 +10,9 @@ export class AccountMongodbRepository implements AccountRepositoryInterface {
     private readonly mongoHelper: Model<AccountModel>,
   ) {}
   public async add(data: AddAccountDto): Promise<AccountModel> {
-    const accountCreated = new this.mongoHelper(data);
-    return await accountCreated.save();
+    const newAccount = Object.assign({} as AddAccountDto, data);
+    const accountCreated = await this.mongoHelper.create(newAccount);
+    return accountCreated;
   }
 
   public async findByEmail(email: string): Promise<AccountModel> {
@@ -22,5 +23,11 @@ export class AccountMongodbRepository implements AccountRepositoryInterface {
 
   public async find(): Promise<AccountModel[]> {
     return await this.mongoHelper.find();
+  }
+
+  public async findById(id: string): Promise<AccountModel> {
+    return await this.mongoHelper.findOne({
+      _id: { $eq: id },
+    });
   }
 }
