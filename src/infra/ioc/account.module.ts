@@ -5,6 +5,7 @@ import { Module } from '@nestjs/common';
 import { DatabaseModule } from '../config/database/database.module';
 import { AccountMongodbRepository } from '../config/database/mongodb/repositories/account/account-mongodb.repository';
 import { ExceptionsModule } from '../exceptions/exceptions.module';
+import { ExceptionsService } from '../exceptions/exceptions.service';
 import { LoggerModule } from '../logger/logger.module';
 
 @Module({
@@ -12,10 +13,13 @@ import { LoggerModule } from '../logger/logger.module';
   providers: [
     {
       provide: AddAccountUseCase,
-      useFactory(accountRepo: AccountRepositoryInterface) {
-        return new AddAccountUseCase(accountRepo);
+      useFactory(
+        accountRepo: AccountRepositoryInterface,
+        exceptionService: ExceptionsService,
+      ) {
+        return new AddAccountUseCase(accountRepo, exceptionService);
       },
-      inject: [AccountMongodbRepository],
+      inject: [AccountMongodbRepository, ExceptionsService],
     },
   ],
   controllers: [AccountController],
