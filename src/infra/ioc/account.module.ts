@@ -4,6 +4,7 @@ import { ExceptionInterface } from '@app/domain/exceptions/exception.interface';
 import { ILogger } from '@app/domain/logger/logger.interface';
 import { AccountController } from '@app/presentation/controllers/account/account.controller';
 import { AddAccountUseCase } from '@app/usecases/account/add-account.usecase';
+import { FindAccountByIdUseCase } from '@app/usecases/account/find-account-by-id.usecase';
 import { FindAccountsUseCase } from '@app/usecases/account/find-accounts.usecase';
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from '../config/database/database.module';
@@ -30,13 +31,13 @@ import { LoggerService } from '../logger/logger.service';
       useFactory(
         accountRepo: AccountRepositoryInterface,
         bcryptAdapter: BcryptAdapterInterface,
-        exceptionService: ExceptionInterface,
+        exception: ExceptionInterface,
         logger: ILogger,
       ) {
         return new AddAccountUseCase(
           accountRepo,
           bcryptAdapter,
-          exceptionService,
+          exception,
           logger,
         );
       },
@@ -51,11 +52,23 @@ import { LoggerService } from '../logger/logger.service';
       provide: FindAccountsUseCase,
       useFactory(
         accountRepo: AccountRepositoryInterface,
-        exceptionService: ExceptionsService,
+        exception: ExceptionInterface,
+        logger: ILogger,
       ) {
-        return new FindAccountsUseCase(accountRepo, exceptionService);
+        return new FindAccountsUseCase(accountRepo, exception, logger);
       },
-      inject: [AccountMongodbRepository, ExceptionsService],
+      inject: [AccountMongodbRepository, ExceptionsService, LoggerService],
+    },
+    {
+      provide: FindAccountByIdUseCase,
+      useFactory(
+        accountRepo: AccountRepositoryInterface,
+        exception: ExceptionInterface,
+        logger: ILogger,
+      ) {
+        return new FindAccountByIdUseCase(accountRepo, exception, logger);
+      },
+      inject: [AccountMongodbRepository, ExceptionsService, LoggerService],
     },
   ],
   controllers: [AccountController],

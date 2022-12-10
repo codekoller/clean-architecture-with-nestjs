@@ -5,4 +5,5 @@ export interface AccountRepositoryInterface {
   add(data: AddAccountDto): Promise<AccountModel>;
   findByEmail(email: string): Promise<AccountModel>;
   find(): Promise<AccountModel[]>;
+  findById(id: string): Promise<AccountModel>;
 }
