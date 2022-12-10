@@ -8,4 +8,5 @@ export interface ExceptionInterface {
   internalServerErrorException(data?: FormatExceptionMessageInterface): void;
   forbiddenException(data?: FormatExceptionMessageInterface): void;
   unauthorizedException(data?: FormatExceptionMessageInterface): void;
+  conflictException(data?: FormatExceptionMessageInterface): void;
 }

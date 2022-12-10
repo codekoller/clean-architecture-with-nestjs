@@ -1,4 +1,4 @@
-import { AddAccountRepositoryInterface } from '@app/data/protocols/account/add-account-repository.interface';
+import { AccountRepositoryInterface } from '@app/data/protocols/account/add-account-repository.interface';
 import { AccountController } from '@app/presentation/controllers/account/account.controller';
 import { AddAccountUseCase } from '@app/usecases/account/add-account.usecase';
 import { Module } from '@nestjs/common';
@@ -12,8 +12,8 @@ import { LoggerModule } from '../logger/logger.module';
   providers: [
     {
       provide: AddAccountUseCase,
-      useFactory(addAccountRepo: AddAccountRepositoryInterface) {
-        return new AddAccountUseCase(addAccountRepo);
+      useFactory(accountRepo: AccountRepositoryInterface) {
+        return new AddAccountUseCase(accountRepo);
       },
       inject: [AccountMongodbRepository],
     },
