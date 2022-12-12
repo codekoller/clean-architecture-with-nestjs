@@ -17,7 +17,7 @@ import * as Joi from 'joi';
           .default('development')
           .required(),
         MONGODB_URI: Joi.string().required(),
-        MONGODB_PORT: Joi.number().default(271017).required(),
+        MONGODB_PORT: Joi.number().default(27017).required(),
       }),
     }),
   ],
