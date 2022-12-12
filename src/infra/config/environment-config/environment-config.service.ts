@@ -6,6 +6,6 @@ import { ConfigService } from '@nestjs/config';
 export class EnvironmentConfigService implements DatabaseConfigInterface {
   constructor(private readonly config: ConfigService) {}
   getDatabaseUri(): string {
-    return this.config.get<string>('MONGODB_URI');
+    return this.config.get<string>('mongodbUri');
   }
 }
