@@ -16,7 +16,12 @@ async function bootstrap() {
   app.useGlobalFilters(new AllExceptionFilter(new LoggerService()));
 
   // pipes
-  app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true, // removes unnecessary properties in POST request body,
+      transform: true,
+    }),
+  );
 
   // interceptors
   app.useGlobalInterceptors(new LoggingInterceptor(new LoggerService()));
@@ -25,7 +30,7 @@ async function bootstrap() {
   // base routing
   app.setGlobalPrefix('/api');
   const config = app.get<ConfigService>(ConfigService);
-  const port = config.get<number>('PORT');
+  const port = config.get<number>('port');
   await app.listen(port, () => logger.log(`Server listening at ${port}`));
 }
 bootstrap();

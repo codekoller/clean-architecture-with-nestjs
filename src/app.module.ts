@@ -1,5 +1,4 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { LogsMiddleware } from './infra/common/middleware/logs.middleware';
 import { EnvironmentConfigModule } from './infra/config/environment-config/environment-config.module';
 import { CryptographyModule } from './infra/cryptography/cryptography.module';
@@ -9,10 +8,6 @@ import { LoggerModule } from './infra/logger/logger.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      envFilePath: '.env',
-    }),
     EnvironmentConfigModule,
     LoggerModule,
     ExceptionsModule,
