@@ -1,15 +1,15 @@
 version: '3.8'
 services:
-  backend:
+  clean-arch-api:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: backend
+    container_name: clean-arch-api
     depends_on:
-      - database
+      - clean-arch-db
     entrypoint: sh -c 'yarn install --frozen-lockfile && yarn start:dev'
-    env_file:
-      - .env
+    environment:
+      NGINX_PORT: ${NGINX_PORT}
     ports:
       - ${PORT}:${PORT}
     networks:
@@ -18,15 +18,30 @@ services:
       - .:/app/
       - /app/node_modules/
 
-  database:
+  clean-arch-db:
     image: mongo:latest
-    container_name: database
+    container_name: clean-arch-db
     ports:
       - ${MONGODB_PORT}:${MONGODB_PORT}
     networks:
       - clean-arch-net
     volumes:
       - database-volume/data/db
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: nginx
+    ports:
+      - ${NGINX_PORT}:${NGINX_PORT}
+    expose:
+      - ${NGINX_PORT}
+    networks:
+      - clean-arch-net
+    links:
+      - clean-arch-api
+    restart: always
 
 networks:
   clean-arch-net:
