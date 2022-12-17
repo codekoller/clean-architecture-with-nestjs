@@ -33,7 +33,7 @@ export class AddAccountUseCase {
 
     this.logger.log(
       'AddAccountUseCase',
-      `A new account has been created: ${accountMapped}`,
+      `A new account has been created: ${JSON.stringify(accountMapped)}`,
     );
     return accountMapped;
   }

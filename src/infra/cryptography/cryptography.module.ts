@@ -1,9 +1,12 @@
 import { Module } from '@nestjs/common';
-import { EnvironmentConfigService } from '../config/environment-config/environment-config.service';
+import { JwtService } from '@nestjs/jwt';
+import { EnvironmentConfigModule } from '../config/environment-config/environment-config.module';
 import { BcryptAdapter } from './bcrypt/bcrypt-adapter';
+import { JwtAdapter } from './jwt/jwt-adapter';
 
 @Module({
-  providers: [BcryptAdapter, EnvironmentConfigService],
-  exports: [BcryptAdapter],
+  imports: [EnvironmentConfigModule],
+  providers: [BcryptAdapter, JwtAdapter, JwtService],
+  exports: [BcryptAdapter, JwtAdapter],
 })
 export class CryptographyModule {}

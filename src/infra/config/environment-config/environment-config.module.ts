@@ -7,17 +7,20 @@ import * as Joi from 'joi';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.env',
+      envFilePath: '.env.development',
       isGlobal: true,
       load: [configuration],
       validationSchema: Joi.object({
+        APP_URL: Joi.string().required(),
         PORT: Joi.number().required(),
         NODE_ENV: Joi.string()
           .valid('development', 'production', 'test', 'provision')
           .default('development')
           .required(),
+        JWT_SECRET: Joi.string().required(),
         MONGODB_URI: Joi.string().required(),
         MONGODB_PORT: Joi.number().default(27017).required(),
+        NGINX_PORT: Joi.number().default(80).required(),
       }),
     }),
   ],
