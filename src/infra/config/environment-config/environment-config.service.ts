@@ -9,10 +9,14 @@ export class EnvironmentConfigService
 {
   constructor(private readonly config: ConfigService) {}
   getDatabaseUri(): string {
-    return this.config.get<string>('mongodbUri');
+    return this.config.get<string>('db.mongodbUri');
   }
 
   getJwtSecret(): string {
-    return this.config.get<string>('jwtSecret');
+    return this.config.get<string>('jwt.secret');
+  }
+
+  getExpiresIn(): string {
+    return this.config.get<string>('jwt.expiresIn');
   }
 }

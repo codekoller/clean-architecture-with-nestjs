@@ -30,7 +30,7 @@ async function bootstrap() {
   // base routing
   app.setGlobalPrefix('/api');
   const config = app.get<ConfigService>(ConfigService);
-  const port = config.get<number>('port');
+  const port = config.get<number>('app.port');
   await app.listen(port, () => logger.log(`Server listening at ${port}`));
 }
 bootstrap();

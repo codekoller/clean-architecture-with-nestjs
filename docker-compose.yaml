@@ -8,6 +8,8 @@ services:
     depends_on:
       - clean-arch-db
     entrypoint: sh -c 'yarn install --frozen-lockfile && yarn start:dev'
+    env_file:
+      - .env.development
     environment:
       NGINX_PORT: ${NGINX_PORT}
     ports:

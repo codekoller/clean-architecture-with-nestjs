@@ -1,4 +1,4 @@
-import { JwtInterface } from '@app/domain/cryptography/jwt-interface';
+import { JwtAdapterInterface } from '@app/domain/cryptography/jwt-adapter.interface';
 import { EnvironmentConfigService } from '@app/infra/config/environment-config/environment-config.service';
 import { AccountModel } from '@app/infra/database/mongodb/models/account/account.model';
 import { VerifyTokenDto } from '@app/presentation/dtos/auth/verify-token.dto';
@@ -6,7 +6,7 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
-export class JwtAdapter implements JwtInterface {
+export class JwtAdapter implements JwtAdapterInterface {
   constructor(
     private readonly jwtService: JwtService,
     private readonly environmentService: EnvironmentConfigService,
@@ -17,10 +17,13 @@ export class JwtAdapter implements JwtInterface {
       id: account._id,
       name: account.name,
       surname: account.surname,
-      email: account.email,
+      createdAt: account.createdAt,
+      updatedAt: account.updatedAt,
     };
     return this.jwtService.signAsync(jwtPayload, {
       secret: this.environmentService.getJwtSecret(),
+      expiresIn: this.environmentService.getExpiresIn(),
+      algorithm: 'HS512',
     });
   }
 

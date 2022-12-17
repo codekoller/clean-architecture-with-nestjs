@@ -43,12 +43,6 @@ export class AccountModel {
   @Prop({
     type: String,
     required: true,
-    get: (password: string) => {
-      if (!password) {
-        return;
-      }
-      return '**************';
-    },
   })
   password: string;
 
