@@ -30,4 +30,10 @@ export class AccountMongodbRepository implements AccountRepositoryInterface {
       _id: { $eq: id },
     });
   }
+
+  public async findByName(name: string): Promise<AccountModel> {
+    return await this.mongoHelper.findOne({
+      name: { $eq: name },
+    });
+  }
 }

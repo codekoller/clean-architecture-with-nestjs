@@ -19,4 +19,8 @@ export class EnvironmentConfigService
   getExpiresIn(): string {
     return this.config.get<string>('EXPIRES_IN');
   }
+
+  getJwtRefreshToken(): string {
+    return this.config.get<string>('JWT_REFRESH_TOKEN_SECRET');
+  }
 }

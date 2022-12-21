@@ -6,4 +6,5 @@ export interface AccountRepositoryInterface {
   findByEmail(email: string): Promise<AccountModel>;
   find(): Promise<AccountModel[]>;
   findById(id: string): Promise<AccountModel>;
+  findByName(name: string): Promise<AccountModel>;
 }
