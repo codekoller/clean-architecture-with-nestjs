@@ -13,7 +13,7 @@ import { validate } from './environment-config.validation';
       }),
     }),
     ConfigModule.forRoot({
-      envFilePath: '.env.development',
+      envFilePath: ['.env.development'],
       isGlobal: true,
       validate,
     }),
