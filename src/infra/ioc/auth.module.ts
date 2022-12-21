@@ -2,6 +2,7 @@ import { AccountRepositoryInterface } from '@app/data/protocols/account/account-
 import { BcryptAdapterInterface } from '@app/domain/adapters/bcrypt-adapter.interface';
 import { JwtAdapterInterface } from '@app/domain/cryptography/jwt-adapter.interface';
 import { AuthController } from '@app/presentation/controllers/auth/auth.controller';
+import { JwtStrategy } from '@app/presentation/strategies/jwt.strategy';
 import { SignInUseCase } from '@app/usecases/auth/sign-in.usecase';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -13,6 +14,7 @@ import { CryptographyModule } from '../cryptography/cryptography.module';
 import { JwtAdapter } from '../cryptography/jwt/jwt-adapter';
 import { DatabaseModule } from '../database/database.module';
 import { AccountMongodbRepository } from '../database/mongodb/repositories/account/account-mongodb.repository';
+import { LoggerService } from '../logger/logger.service';
 
 @Module({
   imports: [
@@ -51,6 +53,8 @@ import { AccountMongodbRepository } from '../database/mongodb/repositories/accou
       },
       inject: [AccountMongodbRepository, BcryptAdapter, JwtAdapter],
     },
+    JwtStrategy,
+    LoggerService,
   ],
   controllers: [AuthController],
 })

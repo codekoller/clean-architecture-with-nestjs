@@ -4,7 +4,8 @@ import { ResponseAccountType } from '@app/presentation/types/account/response-ac
 import { AddAccountUseCase } from '@app/usecases/account/add-account.usecase';
 import { FindAccountByIdUseCase } from '@app/usecases/account/find-account-by-id.usecase';
 import { FindAccountsUseCase } from '@app/usecases/account/find-accounts.usecase';
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '@app/presentation/guards/jwt-auth.guard';
 
 @Controller('accounts')
 export class AccountController {
@@ -25,6 +26,7 @@ export class AccountController {
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   public async findById(
     @Param() identifyAccountDto: IdentifyAccountDto,
   ): Promise<ResponseAccountType> {
