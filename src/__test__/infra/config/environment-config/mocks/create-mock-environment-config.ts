@@ -6,7 +6,7 @@ export const CreateMockEnvironmentConfig = async () => {
   const moduleRef = await Test.createTestingModule({
     imports: [
       ConfigModule.forRoot({
-        envFilePath: '.env',
+        envFilePath: ['.env.development'],
         isGlobal: true,
       }),
     ],
