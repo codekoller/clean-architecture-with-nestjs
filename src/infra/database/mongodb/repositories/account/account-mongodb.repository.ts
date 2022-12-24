@@ -36,4 +36,28 @@ export class AccountMongodbRepository implements AccountRepositoryInterface {
       name: { $eq: name },
     });
   }
+
+  public async updateLastLogin(accountId: string): Promise<void> {
+    const now = new Date();
+    await this.mongoHelper.updateOne(
+      { _id: accountId },
+      {
+        $set: { lastLogin: { $eq: now } },
+      },
+    );
+  }
+
+  public async updateRefreshToken(
+    accountId: string,
+    refreshToken: string,
+  ): Promise<void> {
+    await this.mongoHelper.updateOne(
+      {
+        _id: accountId,
+      },
+      {
+        $set: { refreshToken },
+      },
+    );
+  }
 }

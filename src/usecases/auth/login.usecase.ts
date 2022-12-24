@@ -33,8 +33,13 @@ export class LoginUseCase {
 
     const accessToken = await this.jwtAdapter.encrypt(accountExists);
 
+    const refreshToken = await this.jwtAdapter.encryptRefreshToken(
+      accessToken,
+      accountExists,
+    );
+
     this.logger.log('LoginUseCase', 'Account logged');
 
-    return AuthMapper.toAuth(accessToken, accessToken);
+    return AuthMapper.toAuth(accessToken, refreshToken);
   }
 }

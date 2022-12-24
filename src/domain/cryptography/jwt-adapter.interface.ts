@@ -4,4 +4,5 @@ import { VerifyTokenDto } from '@app/presentation/dtos/auth/verify-token.dto';
 export interface JwtAdapterInterface {
   encrypt(account: AccountModel): Promise<string>;
   decrypt: (token: string) => Promise<VerifyTokenDto>;
+  encryptRefreshToken(token: string, account: AccountModel): Promise<string>;
 }

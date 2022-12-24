@@ -7,4 +7,6 @@ export interface AccountRepositoryInterface {
   find(): Promise<AccountModel[]>;
   findById(id: string): Promise<AccountModel>;
   findByName(name: string): Promise<AccountModel>;
+  updateLastLogin(accountId: string): Promise<void>;
+  updateRefreshToken(accountId: string, refreshToken: string): Promise<void>;
 }

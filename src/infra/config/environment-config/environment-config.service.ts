@@ -23,4 +23,8 @@ export class EnvironmentConfigService
   getJwtRefreshToken(): string {
     return this.config.get<string>('JWT_REFRESH_TOKEN_SECRET');
   }
+
+  getJwtRefreshTokenExpirationTime(): string {
+    return this.config.get<string>('JWT_REFRESH_TOKEN_EXPIRATION_TIME');
+  }
 }
