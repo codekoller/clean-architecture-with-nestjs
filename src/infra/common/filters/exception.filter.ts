@@ -13,7 +13,7 @@ interface IError {
   codeError: string;
 }
 
-@Catch()
+@Catch(HttpException)
 export class AllExceptionFilter implements ExceptionFilter {
   constructor(private readonly logger: LoggerService) {}
   catch(exception: HttpException, host: ArgumentsHost) {
@@ -53,7 +53,7 @@ export class AllExceptionFilter implements ExceptionFilter {
     if (status === 500) {
       this.logger.error(
         `End Request for ${request.path}`,
-        `method=${request.method} status=${status} code_error=${
+        `method=${request.method} status=${status} codeError=${
           message.codeError ? message.codeError : null
         } message=${message.message ? message.message : null}`,
         status >= 500 ? exception.stack : '',
@@ -61,7 +61,7 @@ export class AllExceptionFilter implements ExceptionFilter {
     } else {
       this.logger.warn(
         `End Request for ${request.path}`,
-        `method=${request.method} status=${status} code_error=${
+        `method=${request.method} status=${status} codeError=${
           message.codeError ? message.codeError : null
         } message=${message.message ? message.message : null}`,
       );

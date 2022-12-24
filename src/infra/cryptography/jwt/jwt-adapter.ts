@@ -30,6 +30,29 @@ export class JwtAdapter implements JwtAdapterInterface {
   public async decrypt(token: string): Promise<VerifyTokenDto> {
     return this.jwtService.verifyAsync(token, {
       secret: this.environmentService.getJwtSecret(),
+      algorithms: ['HS512'],
+    });
+  }
+
+  public async encryptRefreshToken(
+    token: string,
+    account: AccountModel,
+  ): Promise<string> {
+    const jwtRefreshToken = {
+      _id: account._id,
+      name: account.name,
+      surname: account.surname,
+      age: account.age,
+      email: account.email,
+      createdAt: account.createdAt,
+      updatedAt: account.updatedAt,
+      token,
+    };
+
+    return this.jwtService.signAsync(jwtRefreshToken, {
+      secret: this.environmentService.getJwtRefreshToken(),
+      expiresIn: this.environmentService.getJwtRefreshTokenExpirationTime(),
+      algorithm: 'HS512',
     });
   }
 }

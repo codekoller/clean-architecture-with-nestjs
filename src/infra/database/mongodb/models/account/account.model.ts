@@ -47,6 +47,16 @@ export class AccountModel {
   password: string;
 
   @Prop({
+    Type: Date,
+  })
+  lastLogin?: Date;
+
+  @Prop({
+    Type: String,
+  })
+  refreshToken?: string;
+
+  @Prop({
     type: Date,
   })
   createdAt: Date;
