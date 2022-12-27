@@ -38,6 +38,8 @@ export class LoginUseCase {
       accountExists,
     );
 
+    await this.accountRepo.updateLastLogin(accountExists._id);
+
     this.logger.log('LoginUseCase', 'Account logged');
 
     return AuthMapper.toAuth(accessToken, refreshToken);
